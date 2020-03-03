@@ -2,6 +2,7 @@
     <string name="app_name">GuestBook</string>
     <string name="title_textview">Welcome to the Guest Book!</string>
     <string name="guestname_text">Guest Name</string>
-    <string name="guest_button">Add a Guest</string>
+    <string name="addguest_button">Add a Guest</string>
     <string name="room_number_text">Room Number</string>
+    <string name="close_button">Close</string>
 </resources>
