@@ -93,7 +93,9 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < guestCount; i++) {
                     String guest = sharedPreferences.getString(guestKeyPrefix + (i + 1), "unknown");
                     String room = sharedPreferences.getString(roomKeyPrefix + (i + 1), "unknown");
-                    guestList.add(new Guest(guest,room));
+                    guestList.add(guest);
+                    guestList.add(room);
+                    totGuestList.add(new Guest(guest,room));
                     Log.d("TAG_X", guest);
                 }
 
@@ -101,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             private void updateGuestList() {
-                guestAdapter = new GuestAdapter(guestList);
+                guestAdapter = new GuestAdapter(totGuestList);
                 guestListView.setAdapter(guestAdapter);
             }
 
