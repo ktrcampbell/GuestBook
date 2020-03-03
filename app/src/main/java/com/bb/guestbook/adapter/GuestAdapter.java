@@ -30,8 +30,9 @@ public class GuestAdapter extends BaseAdapter {
     }
 
     @Override
+    // associate position with actual id (i.e., position 1 = id 1)
     public long getItemId(int position) {
-        return 0;
+        return (long) position;
     }
 
     @Override

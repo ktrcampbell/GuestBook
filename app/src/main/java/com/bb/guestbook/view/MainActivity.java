@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     private int guestCount = 0;
     private String guestKeyPrefix = "GUEST_";
+    private String roomKeyPrefix = "ROOM_";
     private SharedPreferences sharedPreferences;
 
     private ImageView mainImageView;
@@ -56,16 +58,11 @@ public class MainActivity extends AppCompatActivity {
                 .into(mainImageView);
         closeApp = findViewById(R.id.close_button);
 
-        guestNameEditText = findViewById(R.id.room_edit_text);
+        guestNameEditText = findViewById(R.id.guestname_text);
         guestCount = sharedPreferences.getInt(GUEST_COUNT_KEY, 0);
-    }
-        public void closeActivity(View view) {
-            closeApp.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    finish();
-                }
-            });
+        addGuestButton = findViewById(R.id.addguest_button);
+        guestListView = findViewById(R.id.guest_listview);
+        guestRoomEditText = findViewById(R.id.room_edit_text);
 
         addGuestButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 guestRoomEditText.setText("");
             }
             });
+
                 readGuests();
             }
 
@@ -94,8 +92,9 @@ public class MainActivity extends AppCompatActivity {
 
                 for (int i = 0; i < guestCount; i++) {
                     String guest = sharedPreferences.getString(guestKeyPrefix + (i + 1), "unknown");
-                    totGuestList.add(guest);
-                    //guestList.add(new Guest(guest));
+                    String room = sharedPreferences.getString(roomKeyPrefix + (i + 1), "unknown");
+                    guestList.add(new Guest(guest,room));
+                    Log.d("TAG_X", guest);
                 }
 
                 updateGuestList();
@@ -106,7 +105,17 @@ public class MainActivity extends AppCompatActivity {
                 guestListView.setAdapter(guestAdapter);
             }
 
+    public void closeActivity (View view){
+        closeApp.setOnClickListener(new View.OnClickListener() {
             @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
+
+
+        @Override
             public void onConfigurationChanged(@NonNull Configuration newConfig) {
                 super.onConfigurationChanged(newConfig);
             }
@@ -120,5 +129,6 @@ public class MainActivity extends AppCompatActivity {
             protected void onStop() {
                 super.onStop();
             }
-        }
+
+}
 

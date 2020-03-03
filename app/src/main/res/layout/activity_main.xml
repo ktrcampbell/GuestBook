@@ -45,10 +45,11 @@
         android:layout_height="41dp"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
+        android:hint="@string/guestname_text"
+        android:gravity="center"
         android:ems="10"
         android:fontFamily="@font/allerta"
         android:inputType="textPersonName"
-        android:text="@string/guestname_text"
         app:layout_constraintBottom_toTopOf="@id/addguest_button"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -61,7 +62,8 @@
         android:ems="10"
         android:fontFamily="@font/allerta"
         android:inputType="textPersonName"
-        android:text="@string/room_number_text"
+        android:hint="@string/room_number_text"
+        android:gravity="center"
         app:layout_constraintBottom_toTopOf="@id/addguest_button"
         app:layout_constraintStart_toEndOf="@+id/guestname_text" />
 
